@@ -1,0 +1,42 @@
+/*.thunderbirdMessageDisplayActionExample {*/
+/*    background-color: #d70022;*/
+/*    color: white;*/
+/*    font-weight: 400;*/
+/*    padding: 0.25rem 0.5rem;*/
+/*    display: flex;*/
+/*}*/
+
+/*.thunderbirdMessageDisplayActionExample_Text {*/
+/*    flex-grow: 1;*/
+/*}*/
+
+/* banners.css */
+
+.banner {
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.loading-banner {
+    background-color: #cce5ff;
+    border-color: #b8daff;
+    color: #004085;
+}
+
+.success-banner {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.danger-banner {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
