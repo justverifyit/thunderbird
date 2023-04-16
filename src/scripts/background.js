@@ -36,8 +36,7 @@ messenger.messageDisplayAction.onClicked.addListener(async (tab) =>{
         newStatus = "loading"
 
         if (newStatus !== currentStatus) {
-            await browser.storage.local.set({currentStatus: newStatus});
-            await browser.storage.local.set({shouldUpdateBanner: "true"});
+            updateStatus("loading");
         }
 
         onButtonClick(tab.id, message);
@@ -81,6 +80,8 @@ async function performScanAndPolling(message, attachment) {
     let formData = new FormData();
     formData.append("file", attachmentBlob);
 
+    // Update status
+    updateStatus("uploading")
 
     // Upload the attachment to VirusTotal
     response = await fetch(apiUrl, {
@@ -99,27 +100,30 @@ async function performScanAndPolling(message, attachment) {
     let data = await response.json();
     const analysisId = data.data.id;
 
+    // Update status
+    updateStatus("polling");
+
     // Poll for the analysis result
     return await pollVirusTotalResult(apiKey, analysisId);
 }
 
 async function pollVirusTotalResult(apiKey, analysisId) {
-    const delayBetweenRetries = 250; // 250ms
+    const delayBetweenRetries = 1000; // 1000ms
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-    let retries = 5;
+    let retries = 60;
 
     while (retries > 0) {
         try {
             return await performPolling(apiKey, analysisId);
         } catch (error) {
             retries--;
+            console.log(retries);
             if (retries === 0) {
-                throw new Error("Error fetching analysis result: Max retries reached");
+                updateStatus("warning");
             }
-            await new Promise((resolve) => setTimeout(resolve, 15000));
+            await delay(delayBetweenRetries);
         }
-        await delay(delayBetweenRetries);
     }
 }
 
@@ -150,16 +154,26 @@ async function performPolling(apiKey, analysisId) {
 
 async function showResults(results){
     let foundMalicious = false;
+    let noResults = false;
+
+    console.log(results);
     results.forEach(function (result, _) {
-        if (result.result.stats.malicious > 0 || result.result.stats.suspicious > 0){
-            foundMalicious = true;
-            browser.storage.local.set({currentStatus: "danger"});
-            browser.storage.local.set({shouldUpdateBanner: "true"});
+        if (result.result !== undefined) {
+            if (result.result.stats.malicious > 0 || result.result.stats.suspicious > 0){
+                foundMalicious = true;
+                updateStatus("danger")
+            }
+        } else {
+            noResults = true;
         }
     })
 
-    if (!foundMalicious){
-        await browser.storage.local.set({currentStatus: "safe"});
-        await browser.storage.local.set({shouldUpdateBanner: "true"});
+    if (!foundMalicious && !noResults){
+        updateStatus("safe")
     }
+}
+
+async function updateStatus(status){
+    await browser.storage.local.set({currentStatus: status});
+    await browser.storage.local.set({shouldUpdateBanner: "true"});
 }

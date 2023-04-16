@@ -16,6 +16,18 @@ function addBanner(status){
             notification.className = "verifyit_banner banner loading-banner";
             notificationText.innerText = "Loading...";
             break;
+        case "uploading":
+            notification.className = "verifyit_banner banner loading-banner";
+            notificationText.innerText = "Uploading attachment...";
+            break;
+        case "polling":
+            notification.className = "verifyit_banner banner loading-banner";
+            notificationText.innerText = "Polling for attachment results...";
+            break;
+        case "warning":
+            notification.className = "verifyit_banner banner warning-banner";
+            notificationText.innerText = "Error fetching analysis result: Max retries reached...";
+            break;
         case "danger":
             notification.className = "verifyit_banner banner danger-banner";
             notificationText.innerText = "One or more of the attachments appear to contain a virus, proceed with caution!";

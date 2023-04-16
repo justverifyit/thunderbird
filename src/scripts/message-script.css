@@ -40,3 +40,9 @@
     border-color: #f5c6cb;
     color: #721c24;
 }
+
+.warning-banner {
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
+}
