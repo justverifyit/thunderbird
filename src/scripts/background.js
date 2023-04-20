@@ -1,3 +1,9 @@
+/* Initialize settings */
+browser.storage.local.get("delay").then((item) => {if (Object.entries(item).length==0){browser.storage.local.set({"delay":1000})}})
+browser.storage.local.get("retries").then((item) => {if (Object.entries(item).length==0){browser.storage.local.set({"retries":60})}})
+browser.storage.local.get("apiKey").then((item) => {if (Object.entries(item).length==0){browser.storage.local.set({"apiKey":""})}})
+
+/* Initialize state */
 browser.storage.local.set({currentStatus: "none"});
 browser.storage.local.remove("shouldUpdateBanner");
 
@@ -72,7 +78,7 @@ async function scanWithVirusTotal(message, attachment) {
 }
 
 async function performScanAndPolling(message, attachment) {
-    const apiKey = "55fb998c6550d06fce29f5d06e44c42baa3f639be15ca87bbf02c50e88f8be20";
+    let { apiKey } = await browser.storage.local.get("apiKey");
     const apiUrl = "https://www.virustotal.com/api/v3/files";
 
     // Download the attachment
@@ -104,30 +110,31 @@ async function performScanAndPolling(message, attachment) {
     updateStatus("polling");
 
     // Poll for the analysis result
-    return await pollVirusTotalResult(apiKey, analysisId);
+    return await pollVirusTotalResult(analysisId);
 }
 
-async function pollVirusTotalResult(apiKey, analysisId) {
-    const delayBetweenRetries = 1000; // 1000ms
+async function pollVirusTotalResult(analysisId) {
+    let { retries } = await browser.storage.local.get("retries");
+    let delayBetweenRetries = await browser.storage.local.get("delay");
+
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-    let retries = 60;
 
     while (retries > 0) {
         try {
-            return await performPolling(apiKey, analysisId);
+            return await performPolling(analysisId);
         } catch (error) {
             retries--;
             console.log(retries);
             if (retries === 0) {
                 updateStatus("warning");
             }
-            await delay(delayBetweenRetries);
+            await delay(delayBetweenRetries.delay);
         }
     }
 }
-
-async function performPolling(apiKey, analysisId) {
+async function performPolling(analysisId) {
+    let { apiKey } = await browser.storage.local.get("apiKey");
     const apiUrl = `https://www.virustotal.com/api/v3/analyses/${analysisId}`;
 
     const response = await fetch(apiUrl, {
@@ -156,7 +163,6 @@ async function showResults(results){
     let foundMalicious = false;
     let noResults = false;
 
-    console.log(results);
     results.forEach(function (result, _) {
         if (result.result !== undefined) {
             if (result.result.stats.malicious > 0 || result.result.stats.suspicious > 0){
