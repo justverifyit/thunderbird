@@ -11,6 +11,11 @@
       "strict_min_version": "91.0"
     }
   },
+  "icons": {
+    "64": "images/attachment-64px.png",
+    "32": "images/attachment-32px.png",
+    "16": "images/attachment-16px.png"
+  },
   "background": {
     "scripts": ["scripts/background.js"]
   },
@@ -20,7 +25,8 @@
     "browser_style": true
   },
   "message_display_action": {
-    "default_title": "Verify it"
+    "default_title": "Verify it",
+    "default_icon": "images/attachment-32px.png"
   },
   "permissions": [
     "messagesRead",
