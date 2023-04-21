@@ -28,6 +28,10 @@ function addBanner(status){
             notification.className = "verifyit_banner banner warning-banner";
             notificationText.innerText = "Error fetching analysis result: Max retries reached...";
             break;
+        case "invalid-key":
+            notification.className = "verifyit_banner banner warning-banner";
+            notificationText.innerText = "No API key has been specified, must specify it in the preferences before using";
+            break;
         case "danger":
             notification.className = "verifyit_banner banner danger-banner";
             notificationText.innerText = "One or more of the attachments appear to contain a virus, proceed with caution!";

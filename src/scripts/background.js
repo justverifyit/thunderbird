@@ -81,36 +81,40 @@ async function performScanAndPolling(message, attachment) {
     let { apiKey } = await browser.storage.local.get("apiKey");
     const apiUrl = "https://www.virustotal.com/api/v3/files";
 
-    // Download the attachment
-    let attachmentBlob = await messenger.messages.getAttachmentFile(message.id, attachment.partName);
-    let formData = new FormData();
-    formData.append("file", attachmentBlob);
+    if (apiKey === "")
+        updateStatus("invalid-key")
+    else {
+        // Download the attachment
+        let attachmentBlob = await messenger.messages.getAttachmentFile(message.id, attachment.partName);
+        let formData = new FormData();
+        formData.append("file", attachmentBlob);
 
-    // Update status
-    updateStatus("uploading")
+        // Update status
+        updateStatus("uploading")
 
-    // Upload the attachment to VirusTotal
-    response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-            "x-apikey": apiKey,
-        },
-        body: formData,
-    });
+        // Upload the attachment to VirusTotal
+        response = await fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "x-apikey": apiKey,
+            },
+            body: formData,
+        });
 
-    if (!response.ok) {
-        throw new Error(`Error uploading to VirusTotal: ${response.statusText}`);
+        if (!response.ok) {
+            throw new Error(`Error uploading to VirusTotal: ${response.statusText}`);
+        }
+
+        // Get the analysis ID
+        let data = await response.json();
+        const analysisId = data.data.id;
+
+        // Update status
+        updateStatus("polling");
+
+        // Poll for the analysis result
+        return await pollVirusTotalResult(analysisId);
     }
-
-    // Get the analysis ID
-    let data = await response.json();
-    const analysisId = data.data.id;
-
-    // Update status
-    updateStatus("polling");
-
-    // Poll for the analysis result
-    return await pollVirusTotalResult(analysisId);
 }
 
 async function pollVirusTotalResult(analysisId) {
