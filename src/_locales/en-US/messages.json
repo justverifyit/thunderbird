@@ -1,6 +1,98 @@
 {
-  "general.submit": {
+  "general.tab.1": {
+    "message": "VirusTotal",
+    "description": "tab 1"
+  },
+  "general.tab.2": {
+    "message": "Polling",
+    "description": "tab 2"
+  },
+  "options.menu1.title": {
+    "message": "Virus Total API Key",
+    "description": "menu1 title"
+  },
+  "options.menu1.description": {
+    "message": "The VirusTotal API key is necessary to use this add-on. This is because email attachments are uploaded to them in order to have them scanned. To find out more, please take a look at the following article:  <a href=\"https://support.virustotal.com/hc/en-us/articles/115002100149-API\">here</a>.",
+    "description": "menu1 description"
+  },
+  "options.menu1.label1": {
+    "message": "API Key:",
+    "description": "menu1 label1"
+  },
+  "options.menu1.help": {
+    "message": "The API key is 64 characters long and can be found in your VirusTotal account.",
+    "description": "menu1 help"
+  },
+  "options.menu1.alertSuccess": {
+    "message": "Successfully updated the settings.",
+    "description": "menu1 alert success"
+  },
+  "options.menu1.submit": {
     "message": "Submit",
-    "description": "submit button"
+    "description": "submit"
+  },
+  "options.menu2.title": {
+    "message": "Polling settings",
+    "description": "menu2 title"
+  },
+  "options.menu2.description": {
+    "message": "In order to fetch the results from VirusTotal after the attachments have been uploaded, it is necessary to continuously poll their server. This is because the time to scan each add-on is not constant and varies (based on the size as well as the current amount of requests received). Because of this, it may be necessary to update the parameters below to achieve better results.",
+    "description": "menu2 description"
+  },
+  "options.menu2.label1": {
+    "message": "Delay Between requests:",
+    "description": "menu2 label2"
+  },
+  "options.menu2.delayHelp": {
+    "message": "This value (in ms) specifies the amount of time to wait between each poll request to VirusTotal.",
+    "description": "menu2 delay help"
+  },
+  "options.menu2.label2": {
+    "message": "Number of retries:",
+    "description": "menu2 label2"
+  },
+  "options.menu2.retryHelp": {
+    "message": "This value specifies the amount of times a poll request will be made before giving up.",
+    "description": "menu2 retry help"
+  },
+  "options.menu2.alertSuccess": {
+    "message": "Successfully updated the settings.",
+    "description": "menu2 alert success"
+  },
+  "options.menu2.alertDanger": {
+    "message": "Error! The provided values must be integers (ie. 5, 60, etc.)",
+    "description": "menu2 alert danger"
+  },
+  "options.menu2.submit": {
+    "message": "Submit",
+    "description": "submit"
+  },
+  "messageScript.banner.safe": {
+    "message": "No viruses detected in any of the attachments!",
+    "description": "safe banner"
+  },
+  "messageScript.banner.loading": {
+    "message": "Loading...",
+    "description": "loading banner"
+  },
+  "messageScript.banner.uploading": {
+    "message": "Uploading attachments...",
+    "description": "uploading banner"
+  },
+  "messageScript.banner.polling": {
+    "message": "Polling for attachment results...",
+    "description": "polling banner"
+  },
+  "messageScript.banner.warning": {
+    "message": "Error fetching analysis result: Max retries reached...",
+    "description": "warning banner"
+  },
+  "messageScript.banner.invalid-key": {
+    "message": "No API key has been specified, must specify it in the preferences before using",
+    "description": "invalid key banner"
+  },
+  "messageScript.banner.danger": {
+    "message": "One or more of the attachments appear to contain a virus, proceed with caution!",
+    "description": "danger banner"
   }
 }
