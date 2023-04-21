@@ -1,0 +1,98 @@
+{
+  "general.tab.1": {
+    "message": "VirusTotal",
+    "description": "tab 1"
+  },
+  "general.tab.2": {
+    "message": "Interrogation des résultats",
+    "description": "tab 2"
+  },
+  "options.menu1.title": {
+    "message": "Clé API de VirusTotal",
+    "description": "menu1 title"
+  },
+  "options.menu1.description": {
+    "message": "La clé API de VirusTotal est nécessaire pour utiliser ce module. En effet, les pièces jointes aux courriels leur sont téléchargées afin de les faire analyser. Pour en savoir plus, veuillez consulter l'article suivant: <a href=\"https://support.virustotal.com/hc/en-us/articles/115002100149-API\">ici</a>.",
+    "description": "menu1 description"
+  },
+  "options.menu1.label1": {
+    "message": "Clé API:",
+    "description": "menu1 label1"
+  },
+  "options.menu1.help": {
+    "message": "La clé API comporte 64 caractères et se trouve dans votre compte VirusTotal.",
+    "description": "menu1 help"
+  },
+  "options.menu1.alertSuccess": {
+    "message": "Les paramètres ont été mis à jour avec succès.",
+    "description": "menu1 alert success"
+  },
+  "options.menu1.submit": {
+    "message": "Soumettre",
+    "description": "submit"
+  },
+  "options.menu2.title": {
+    "message": "Paramètres d'interrogation",
+    "description": "menu2 title"
+  },
+  "options.menu2.description": {
+    "message": "Afin de récupérer les résultats de VirusTotal après le téléchargement des pièces jointes, il est nécessaire d'interroger en permanence leur serveur. En effet, le temps d'analyse de chaque module complémentaire n'est pas constant et varie (en fonction de la taille ainsi que du nombre actuel de demandes reçues). Pour cette raison, il peut être nécessaire de mettre à jour les paramètres ci-dessous pour obtenir de meilleurs résultats.",
+    "description": "menu2 description"
+  },
+  "options.menu2.label1": {
+    "message": "Délai entre les requêtes:",
+    "description": "menu2 label2"
+  },
+  "options.menu2.delayHelp": {
+    "message": "Cette valeur (en ms) spécifie le temps d'attente entre chaque demande d'interrogation à VirusTotal.",
+    "description": "menu2 delay help"
+  },
+  "options.menu2.label2": {
+    "message": "Nombre de tentatives:",
+    "description": "menu2 label2"
+  },
+  "options.menu2.retryHelp": {
+    "message": "Cette valeur spécifie le nombre de fois qu'une demande d'interrogation sera effectuée avant d'abandonner.",
+    "description": "menu2 retry help"
+  },
+  "options.menu2.alertSuccess": {
+    "message": "Les paramètres ont été mis à jour avec succès.",
+    "description": "menu2 alert success"
+  },
+  "options.menu2.alertDanger": {
+    "message": "Erreur! Les valeurs fournies doivent être des nombres entiers (c'est-à-dire 5, 60, etc.)",
+    "description": "menu2 alert danger"
+  },
+  "options.menu2.submit": {
+    "message": "Soumettre",
+    "description": "submit"
+  },
+  "messageScript.banner.safe": {
+    "message": "Aucun virus n'est détecté dans les pièces jointes!",
+    "description": "safe banner"
+  },
+  "messageScript.banner.loading": {
+    "message": "Chargement...",
+    "description": "loading banner"
+  },
+  "messageScript.banner.uploading": {
+    "message": "Téléchargement des pièces jointes...",
+    "description": "uploading banner"
+  },
+  "messageScript.banner.polling": {
+    "message": "Interrogation des résultats des pièces jointes...",
+    "description": "polling banner"
+  },
+  "messageScript.banner.warning": {
+    "message": "Erreur lors de la récupération du résultat de l'analyse : nombre maximal de tentatives atteint...",
+    "description": "warning banner"
+  },
+  "messageScript.banner.invalid-key": {
+    "message": "Aucune clé d'API n'a été spécifiée, il faut le spécifier dans les préférences avant d'utiliser ce module",
+    "description": "invalid key banner"
+  },
+  "messageScript.banner.danger": {
+    "message": "Une ou plusieurs des pièces jointes semblent contenir un virus, procédez avec prudence!",
+    "description": "danger banner"
+  }
+}
