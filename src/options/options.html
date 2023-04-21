@@ -28,12 +28,11 @@
             <div id="alertSuccess" class="alert alert-success" role="alert">
                 Successfully updated the settings.
             </div>
-            <p id="description">The VirusTotal API key is necessary to use this add-on. This is because email attachments are uploaded to them in order to have them scanned. To find out more, please take a look at the following article <a href="https://support.virustotal.com/hc/en-us/articles/115002100149-API">here</a>.</p>
+            <p id="description">The VirusTotal API key is necessary to use this add-on. This is because email attachments are uploaded to them in order to have them scanned. To find out more, please take a look at the following article:  <a href="https://support.virustotal.com/hc/en-us/articles/115002100149-API">here</a>.</p>
             <div class="form-group">
                 <label id="label1">API Key:</label>
                 <input type="text" class="form-control" id="apiKey" placeholder="API Key">
-                <small id="spamcopHelp" class="form-text text-muted">The API key is 64 characters long and can be found in your VirusTotal account.
-                </small>
+                <small id="help" class="form-text text-muted">The API key is 64 characters long and can be found in your VirusTotal account.</small>
             </div>
             <button id="submit" type="submit" class="btn btn-primary">Submit</button>
         </div>
@@ -49,14 +48,12 @@
             <div class="form-group">
                 <label id="label1">Delay Between requests:</label>
                 <input type="text" class="form-control" id="delayBetweenRequests" placeholder="100">
-                <small id="delayHelp" class="form-text text-muted">This value (in ms) specifies the amount of time to wait between each poll request to VirusTotal.
-                </small>
+                <small id="delayHelp" class="form-text text-muted">This value (in ms) specifies the amount of time to wait between each poll request to VirusTotal.</small>
             </div>
             <div class="form-group">
                 <label id="label2">Number of retries:</label>
                 <input type="text" class="form-control" id="numberOfRetries" placeholder="60">
-                <small id="delayHelp" class="form-text text-muted">This value specifies the amount of times a poll request will be made before giving up.
-                </small>
+                <small id="retryHelp" class="form-text text-muted">This value specifies the amount of times a poll request will be made before giving up.</small>
             </div>
             <button id="submit" type="submit" class="btn btn-primary">Submit</button>
         </div>

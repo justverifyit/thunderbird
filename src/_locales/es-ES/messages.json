@@ -1,0 +1,98 @@
+{
+  "general.tab.1": {
+    "message": "VirusTotal",
+    "description": "tab 1"
+  },
+  "general.tab.2": {
+    "message": "Votación",
+    "description": "tab 2"
+  },
+  "options.menu1.title": {
+    "message": "Clave de API virustotal",
+    "description": "menu1 title"
+  },
+  "options.menu1.description": {
+    "message": "La clave API virustotal es necesaria para usar este complemento. Esto se debe a que los archivos adjuntos de correo electrónico se les cargan para escanearlos. Para obtener más información, eche un vistazo al siguiente artículo: <a href=\"https://support.virustotal.com/hc/en-us/articles/115002100149-api\"> aquí </a>.",
+    "description": "menu1 description"
+  },
+  "options.menu1.label1": {
+    "message": "Clave API:",
+    "description": "menu1 label1"
+  },
+  "options.menu1.help": {
+    "message": "La clave API tiene 64 caracteres de largo y se puede encontrar en su cuenta Virustotal.",
+    "description": "menu1 help"
+  },
+  "options.menu1.alertSuccess": {
+    "message": "Actualizó con éxito la configuración.",
+    "description": "menu1 alert success"
+  },
+  "options.menu1.submit": {
+    "message": "Entregar",
+    "description": "submit"
+  },
+  "options.menu2.title": {
+    "message": "Configuración de votación",
+    "description": "menu2 title"
+  },
+  "options.menu2.description": {
+    "message": "Para obtener los resultados de Virustotal después de que se han cargado los archivos adjuntos, es necesario encuestar continuamente su servidor. Esto se debe a que el tiempo para escanear cada complemento no es constante y varía (según el tamaño y la cantidad actual de solicitudes recibidas). Debido a esto, puede ser necesario actualizar los parámetros a continuación para lograr mejores resultados.",
+    "description": "menu2 description"
+  },
+  "options.menu2.label1": {
+    "message": "Retraso entre solicitudes:",
+    "description": "menu2 label2"
+  },
+  "options.menu2.delayHelp": {
+    "message": "Este valor (en ms) especifica la cantidad de tiempo para esperar entre cada solicitud de encuesta a Virustotal.",
+    "description": "menu2 delay help"
+  },
+  "options.menu2.label2": {
+    "message": "Número de reintentos:",
+    "description": "menu2 label2"
+  },
+  "options.menu2.retryHelp": {
+    "message": "Este valor especifica la cantidad de veces que se realizará una solicitud de encuesta antes de rendirse.",
+    "description": "menu2 retry help"
+  },
+  "options.menu2.alertSuccess": {
+    "message": "Actualizó con éxito la configuración.",
+    "description": "menu2 alert success"
+  },
+  "options.menu2.alertDanger": {
+    "message": "¡Error! Los valores proporcionados deben ser enteros (es decir, 5, 60, etc.)",
+    "description": "menu2 alert danger"
+  },
+  "options.menu2.submit": {
+    "message": "Entregar",
+    "description": "submit"
+  },
+  "messageScript.banner.safe": {
+    "message": "¡No hay virus detectados en ninguno de los accesorios!",
+    "description": "safe banner"
+  },
+  "messageScript.banner.loading": {
+    "message": "Cargando...",
+    "description": "loading banner"
+  },
+  "messageScript.banner.uploading": {
+    "message": "Carga de archivos adjuntos...",
+    "description": "uploading banner"
+  },
+  "messageScript.banner.polling": {
+    "message": "Policilías para resultados de apego...",
+    "description": "polling banner"
+  },
+  "messageScript.banner.warning": {
+    "message": "Resultado de análisis de errores de error: Max reintentos alcanzó ...",
+    "description": "warning banner"
+  },
+  "messageScript.banner.invalid-key": {
+    "message": "No se ha especificado ninguna clave API, debe especificarla en las preferencias antes de usar",
+    "description": "invalid key banner"
+  },
+  "messageScript.banner.danger": {
+    "message": "¡Uno o más de los accesorios parecen contener un virus, proceda con precaución!",
+    "description": "danger banner"
+  }
+}

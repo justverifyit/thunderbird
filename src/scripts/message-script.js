@@ -10,31 +10,31 @@ function addBanner(status){
     switch (status){
         case "safe":
             notification.className = "verifyit_banner banner success-banner";
-            notificationText.innerText = "No viruses detected in any of the attachments!";
+            notificationText.innerText = browser.i18n.getMessage("messageScript.banner.safe");
             break;
         case "loading":
             notification.className = "verifyit_banner banner loading-banner";
-            notificationText.innerText = "Loading...";
+            notificationText.innerText = browser.i18n.getMessage("messageScript.banner.loading");
             break;
         case "uploading":
             notification.className = "verifyit_banner banner loading-banner";
-            notificationText.innerText = "Uploading attachment...";
+            notificationText.innerText = browser.i18n.getMessage("messageScript.banner.uploading");
             break;
         case "polling":
             notification.className = "verifyit_banner banner loading-banner";
-            notificationText.innerText = "Polling for attachment results...";
+            notificationText.innerText = browser.i18n.getMessage("messageScript.banner.polling");
             break;
         case "warning":
             notification.className = "verifyit_banner banner warning-banner";
-            notificationText.innerText = "Error fetching analysis result: Max retries reached...";
+            notificationText.innerText = browser.i18n.getMessage("messageScript.banner.warning");
             break;
         case "invalid-key":
             notification.className = "verifyit_banner banner warning-banner";
-            notificationText.innerText = "No API key has been specified, must specify it in the preferences before using";
+            notificationText.innerText = browser.i18n.getMessage("messageScript.banner.invalid-key");
             break;
         case "danger":
             notification.className = "verifyit_banner banner danger-banner";
-            notificationText.innerText = "One or more of the attachments appear to contain a virus, proceed with caution!";
+            notificationText.innerText = browser.i18n.getMessage("messageScript.banner.danger");
             break;
     }
 
