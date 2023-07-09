@@ -4,95 +4,95 @@
     "description": "tab 1"
   },
   "general.tab.2": {
-    "message": "Bestendigheid",
+    "message": "Umfrage",
     "description": "tab 2"
   },
   "options.menu1.title": {
-    "message": "Virus Totale API -sleutel",
+    "message": "Virustotal-API-Schlüssel",
     "description": "menu1 title"
   },
   "options.menu1.description": {
-    "message": "De Virustotal API-sleutel is nodig om deze add-on te gebruiken. Dit komt omdat e -mailbijlagen naar hen worden geüpload om ze te laten scannen. Bekijk het volgende artikel voor meer informatie: <a href=\"https://support.virustotal.com/hc/en-us/articles/115002100149-api\"> hier </a>.",
+    "message": "Zur Verwendung dieses Add-ons ist der VirusTotal-API-Schlüssel erforderlich. Dies liegt daran, dass E-Mail-Anhänge dort hochgeladen werden, um sie scannen zu lassen. Um mehr zu erfahren, werfen Sie bitte einen Blick auf den folgenden Artikel: <a href=\"https://support.virustotal.com/hc/en-us/articles/115002100149-API\">hier</a>.",
     "description": "menu1 description"
   },
   "options.menu1.label1": {
-    "message": "API sleutel:",
+    "message": "API-Schlüssel:",
     "description": "menu1 label1"
   },
   "options.menu1.help": {
-    "message": "De API -sleutel is 64 tekens lang en kan worden gevonden in uw Virustotal -account.",
+    "message": "Der API-Schlüssel ist 64 Zeichen lang und kann in Ihrem VirusTotal-Konto gefunden werden.",
     "description": "menu1 help"
   },
   "options.menu1.alertSuccess": {
-    "message": "De instellingen met succes bijgewerkt.",
+    "message": "Die Einstellungen wurden erfolgreich aktualisiert.",
     "description": "menu1 alert success"
   },
   "options.menu1.submit": {
-    "message": "Indienen",
+    "message": "Einreichen",
     "description": "submit"
   },
   "options.menu2.title": {
-    "message": "Steminstellingen",
+    "message": "Umfrageeinstellungen",
     "description": "menu2 title"
   },
   "options.menu2.description": {
-    "message": "Om de resultaten van ViRustotal te halen nadat de bijlagen zijn geüpload, is het noodzakelijk om hun server continu te bestrijden. Dit komt omdat de tijd om elke add-on te scannen niet constant is en varieert (gebaseerd op de grootte en de huidige hoeveelheid ontvangen aanvragen). Daarom kan het nodig zijn om de onderstaande parameters bij te werken om betere resultaten te bereiken.",
+    "message": "Um die Ergebnisse von VirusTotal nach dem Hochladen der Anhänge abzurufen, ist eine kontinuierliche Abfrage des Servers erforderlich. Dies liegt daran, dass die Zeit zum Scannen jedes Add-ons nicht konstant ist und variiert (basierend auf der Größe sowie der aktuellen Anzahl der empfangenen Anfragen). Aus diesem Grund kann es erforderlich sein, die folgenden Parameter zu aktualisieren, um bessere Ergebnisse zu erzielen.",
     "description": "menu2 description"
   },
   "options.menu2.label1": {
-    "message": "Vertraging tussen verzoeken:",
+    "message": "Verzögerung zwischen Anfragen:",
     "description": "menu2 label2"
   },
   "options.menu2.delayHelp": {
-    "message": "Deze waarde (in ms) specificeert de hoeveelheid tijd om te wachten tussen elk poll -verzoek tot Virustotal.",
+    "message": "Dieser Wert (in ms) gibt die Wartezeit zwischen den einzelnen Abfrageanfragen an VirusTotal an.",
     "description": "menu2 delay help"
   },
   "options.menu2.label2": {
-    "message": "Aantal pensioen:",
+    "message": "Anzahl der Wiederholungen:",
     "description": "menu2 label2"
   },
   "options.menu2.retryHelp": {
-    "message": "Deze waarde geeft aan het aantal keren dat een peilingsverzoek wordt gedaan voordat het wordt opgegeven.",
+    "message": "Dieser Wert gibt an, wie oft eine Umfrageanfrage gestellt wird, bevor sie aufgegeben wird.",
     "description": "menu2 retry help"
   },
   "options.menu2.alertSuccess": {
-    "message": "De instellingen met succes bijgewerkt.",
+    "message": "Die Einstellungen wurden erfolgreich aktualisiert.",
     "description": "menu2 alert success"
   },
   "options.menu2.alertDanger": {
-    "message": "Fout! De verstrekte waarden moeten gehele getallen zijn (dwz 5, 60, enz.)",
+    "message": "Fehler! Die bereitgestellten Werte müssen ganze Zahlen sein (z. B. 5, 60 usw.).",
     "description": "menu2 alert danger"
   },
   "options.menu2.submit": {
-    "message": "Indienen",
+    "message": "Einreichen",
     "description": "submit"
   },
   "messageScript.banner.safe": {
-    "message": "Geen virussen gedetecteerd in een van de bijlagen!",
+    "message": "In keinem der Anhänge wurden Viren gefunden!",
     "description": "safe banner"
   },
   "messageScript.banner.loading": {
-    "message": "Bezig met laden...",
+    "message": "Wird geladen...",
     "description": "loading banner"
   },
   "messageScript.banner.uploading": {
-    "message": "Bijlagen aan het uploaden...",
+    "message": "Anhänge werden hochgeladen...",
     "description": "uploading banner"
   },
   "messageScript.banner.polling": {
-    "message": "Polling voor bijlageresultaten...",
+    "message": "Umfrage zu Anhangsergebnissen...",
     "description": "polling banner"
   },
   "messageScript.banner.warning": {
-    "message": "Fout bij ophalen van analyseresultaat: Max aantal nieuwe pogingen bereikt...",
+    "message": "Fehler beim Abrufen des Analyseergebnisses: Max. Wiederholungsversuche erreicht...",
     "description": "warning banner"
   },
   "messageScript.banner.invalid-key": {
-    "message": "Er is geen API-sleutel opgegeven, moet deze vóór gebruik in de voorkeuren specificeren",
+    "message": "Es wurde kein API-Schlüssel angegeben. Dieser muss vor der Verwendung in den Einstellungen angegeben werden",
     "description": "invalid key banner"
   },
   "messageScript.banner.danger": {
-    "message": "Een of meer van de bijlagen lijken een virus te bevatten, wees voorzichtig!",
+    "message": "Einer oder mehrere der Anhänge scheinen einen Virus zu enthalten. Gehen Sie daher vorsichtig vor!",
     "description": "danger banner"
   }
 }
