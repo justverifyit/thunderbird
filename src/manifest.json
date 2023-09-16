@@ -3,12 +3,12 @@
   "name": "Just Verify It",
   "description": "Scan email attachments with VirusTotal",
   "default_locale": "en-US",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "author": "Nicolas Provencher",
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
       "id": "admin@justverify.it",
-      "strict_min_version": "91.0"
+      "strict_min_version": "115.0"
     }
   },
   "icons": {
@@ -21,8 +21,7 @@
   },
   "options_ui": {
     "page": "options/options.html",
-    "open_in_tab": false,
-    "browser_style": true
+    "open_in_tab": false
   },
   "message_display_action": {
     "default_title": "Verify it",
@@ -32,6 +31,7 @@
     "messagesRead",
     "messagesModify",
     "storage",
+    "sensitiveDataUpload",
     "https://www.virustotal.com/*"
   ]
 }
