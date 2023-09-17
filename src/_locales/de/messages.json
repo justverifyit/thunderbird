@@ -91,6 +91,10 @@
     "message": "Es wurde kein API-Schlüssel angegeben. Dieser muss vor der Verwendung in den Einstellungen angegeben werden",
     "description": "invalid key banner"
   },
+  "messageScript.banner.no-attachments": {
+    "message": "Es sind keine Anhänge zum Scannen vorhanden",
+    "description": "no attachments"
+  },
   "messageScript.banner.danger": {
     "message": "Einer oder mehrere der Anhänge scheinen einen Virus zu enthalten. Gehen Sie daher vorsichtig vor!",
     "description": "danger banner"

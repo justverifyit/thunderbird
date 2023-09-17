@@ -32,6 +32,10 @@ function addBanner(status){
             notification.className = "verifyit_banner banner warning-banner";
             notificationText.innerText = browser.i18n.getMessage("messageScript.banner.invalid-key");
             break;
+        case "no-attachments":
+            notification.className = "verifyit_banner banner warning-banner";
+            notificationText.innerText = browser.i18n.getMessage("messageScript.banner.no-attachments");
+            break;
         case "danger":
             notification.className = "verifyit_banner banner danger-banner";
             notificationText.innerText = browser.i18n.getMessage("messageScript.banner.danger");
