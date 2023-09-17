@@ -79,6 +79,10 @@
     "message": "Wgrywanie załączników...",
     "description": "uploading banner"
   },
+  "messageScript.banner.checking": {
+    "message": "Sprawdzanie skrótów załączników...",
+    "description": "check banner"
+  },
   "messageScript.banner.polling": {
     "message": "SPOSPLIKACJA W przypadku wyników przywiązania...",
     "description": "polling banner"

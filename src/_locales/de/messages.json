@@ -79,6 +79,10 @@
     "message": "Anhänge werden hochgeladen...",
     "description": "uploading banner"
   },
+  "messageScript.banner.checking": {
+    "message": "Anhang-Hashes werden überprüft...",
+    "description": "check banner"
+  },
   "messageScript.banner.polling": {
     "message": "Umfrage zu Anhangsergebnissen...",
     "description": "polling banner"

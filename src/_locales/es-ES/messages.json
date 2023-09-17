@@ -79,6 +79,10 @@
     "message": "Carga de archivos adjuntos...",
     "description": "uploading banner"
   },
+  "messageScript.banner.checking": {
+    "message": "Comprobando hashes de archivos adjuntos...",
+    "description": "check banner"
+  },
   "messageScript.banner.polling": {
     "message": "Policilías para resultados de apego...",
     "description": "polling banner"

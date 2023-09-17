@@ -25,8 +25,6 @@ browser.messageDisplay.onMessageDisplayed.addListener(async (tab, message) => {
 
     // Check if the current message ID is different from the previous message ID
     if (currentMessageId !== newMessageId) {
-        console.log("A different message is clicked");
-
         // Clear status
         await browser.storage.local.set({currentStatus: "none"});
     }
@@ -72,16 +70,61 @@ async function onButtonClick(tabId, message) {
 
 async function scanWithVirusTotal(message, attachment, apiKey) {
     try {
-        const result = await performScanAndPolling(message, attachment, apiKey);
-        return {
-            filename: attachment.name,
-            result,
-        };
+        // Query VirusTotal with the hash
+        updateStatus("checking");
+        let hashHex = await calculateAttachmentHash(message, attachment);
+        const report = await queryVirusTotal(hashHex, apiKey);
+
+        // If the file has not been scanned before, perform the scan
+        if (!report) {
+            const result = await performScanAndPolling(message, attachment, apiKey);
+            return {
+                filename: attachment.name,
+                result,
+            };
+        } else {
+            // If the file has been scanned before, return the report
+            return {
+                filename: attachment.name,
+                result: {stats: report},
+            };
+        }
     } catch (error) {
         return {
             filename: attachment.name,
             error: error.message,
         };
+    }
+}
+
+async function calculateAttachmentHash(message, attachment) {
+    let attachmentBlob = await messenger.messages.getAttachmentFile(message.id, attachment.partName);
+    const fileReader = new FileReader();
+    fileReader.readAsArrayBuffer(attachmentBlob);
+    const arrayBuffer = await new Promise((resolve) => {
+        fileReader.onload = () => {
+            resolve(fileReader.result);
+        };
+    });
+    const hashBuffer = await crypto.subtle.digest('SHA-256', arrayBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); // Convert bytes to hex string
+}
+
+async function queryVirusTotal(hash, apiKey) {
+    const response = await fetch(`https://www.virustotal.com/api/v3/files/${hash}`, {
+        method: 'GET',
+        headers: {
+            'x-apikey': apiKey
+        }
+    });
+    if (response.ok) {
+        const data = await response.json();
+        return data.data.attributes.last_analysis_stats; // Return the analysis stats
+    } else if (response.status === 404) {
+        return null; // If the file has not been scanned before, return null
+    } else {
+        throw new Error(`Error: ${response.status}`);
     }
 }
 
@@ -132,7 +175,6 @@ async function pollVirusTotalResult(analysisId) {
             return await performPolling(analysisId);
         } catch (error) {
             retries--;
-            console.log(retries);
             if (retries === 0) {
                 updateStatus("warning");
             }

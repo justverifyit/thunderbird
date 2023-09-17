@@ -79,6 +79,10 @@
     "message": "Încărcarea atașamentelor...",
     "description": "uploading banner"
   },
+  "messageScript.banner.checking": {
+    "message": "Se verifică fișierele hash ale atașamentului...",
+    "description": "check banner"
+  },
   "messageScript.banner.polling": {
     "message": "Sondaj pentru rezultatele atașamentului...",
     "description": "polling banner"
