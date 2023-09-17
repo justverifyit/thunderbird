@@ -3,7 +3,7 @@
   "name": "Just Verify It",
   "description": "Scan email attachments with VirusTotal",
   "default_locale": "en-US",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "author": "Nicolas Provencher",
   "browser_specific_settings": {
     "gecko": {
