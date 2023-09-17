@@ -59,42 +59,53 @@ async function onButtonClick(tabId, message) {
         if (attachments.length === 0) // There are no attachments
             updateStatus("no-attachments")
         else {
+            let results = [];
+            let attachmentsToScan = [];
+
+            // Check attachment hashes
+            updateStatus("checking");
             for (let attachment of attachments) {
-                const result = await scanWithVirusTotal(message, attachment, apiKey);
+                const result = await hashAndCheckWithVirusTotal(message, attachment, apiKey);
+                if (result.alreadyScanned) {
+                    results.push(result);
+                } else {
+                    attachmentsToScan.push(attachment);
+                }
+            }
+
+            // Upload the attachments that have not been scanned before and store the analysis IDs
+            updateStatus("uploading")
+            let analysisIds = [];
+            for (let attachment of attachmentsToScan) {
+                const analysisId = await uploadAndScanWithVirusTotal(message, attachment, apiKey);
+                analysisIds.push(analysisId);
+            }
+
+            // Poll each analysis ID
+            updateStatus("polling");
+            for (let analysisId of analysisIds) {
+                const result = await pollVirusTotalResult(analysisId, apiKey);
                 results.push(result);
             }
+
             showResults(results);
         }
     }
 }
 
-async function scanWithVirusTotal(message, attachment, apiKey) {
-    try {
-        // Query VirusTotal with the hash
-        updateStatus("checking");
-        let hashHex = await calculateAttachmentHash(message, attachment);
-        const report = await queryVirusTotal(hashHex, apiKey);
-
-        // If the file has not been scanned before, perform the scan
-        if (!report) {
-            const result = await performScanAndPolling(message, attachment, apiKey);
-            return {
-                filename: attachment.name,
-                result,
-            };
-        } else {
-            // If the file has been scanned before, return the report
-            return {
-                filename: attachment.name,
-                result: {stats: report},
-            };
-        }
-    } catch (error) {
+async function hashAndCheckWithVirusTotal(message, attachment, apiKey) {
+    let hashHex = await calculateAttachmentHash(message, attachment);
+    const report = await queryVirusTotal(hashHex, apiKey);
+    if (report)
         return {
             filename: attachment.name,
-            error: error.message,
+            stats: report,
+            alreadyScanned: true
         };
-    }
+    else
+        return {
+            alreadyScanned: false
+        };
 }
 
 async function calculateAttachmentHash(message, attachment) {
@@ -128,16 +139,13 @@ async function queryVirusTotal(hash, apiKey) {
     }
 }
 
-async function performScanAndPolling(message, attachment, apiKey) {
+async function uploadAndScanWithVirusTotal(message, attachment, apiKey) {
     const apiUrl = "https://www.virustotal.com/api/v3/files";
 
     // Download the attachment
     let attachmentBlob = await messenger.messages.getAttachmentFile(message.id, attachment.partName);
     let formData = new FormData();
     formData.append("file", attachmentBlob);
-
-    // Update status
-    updateStatus("uploading")
 
     // Upload the attachment to VirusTotal
     response = await fetch(apiUrl, {
@@ -154,16 +162,10 @@ async function performScanAndPolling(message, attachment, apiKey) {
 
     // Get the analysis ID
     let data = await response.json();
-    const analysisId = data.data.id;
-
-    // Update status
-    updateStatus("polling");
-
-    // Poll for the analysis result
-    return await pollVirusTotalResult(analysisId);
+    return data.data.id;
 }
 
-async function pollVirusTotalResult(analysisId) {
+async function pollVirusTotalResult(analysisId, apiKey) {
     let { retries } = await browser.storage.local.get("retries");
     let delayBetweenRetries = await browser.storage.local.get("delay");
 
@@ -172,7 +174,7 @@ async function pollVirusTotalResult(analysisId) {
 
     while (retries > 0) {
         try {
-            return await performPolling(analysisId);
+            return await performPolling(analysisId, apiKey);
         } catch (error) {
             retries--;
             if (retries === 0) {
@@ -182,8 +184,7 @@ async function pollVirusTotalResult(analysisId) {
         }
     }
 }
-async function performPolling(analysisId) {
-    let { apiKey } = await browser.storage.local.get("apiKey");
+async function performPolling(analysisId, apiKey) {
     const apiUrl = `https://www.virustotal.com/api/v3/analyses/${analysisId}`;
 
     const response = await fetch(apiUrl, {
@@ -210,21 +211,18 @@ async function performPolling(analysisId) {
 
 async function showResults(results){
     let foundMalicious = false;
-    let noResults = false;
 
     results.forEach(function (result, _) {
         if (result.result !== undefined) {
-            if (result.result.stats.malicious > 0 || result.result.stats.suspicious > 0){
+            if (result.stats.malicious > 0 || result.stats.suspicious > 0){
                 foundMalicious = true;
-                updateStatus("danger")
+                updateStatus("danger");
             }
-        } else {
-            noResults = true;
         }
     })
 
-    if (!foundMalicious && !noResults){
-        updateStatus("safe")
+    if (!foundMalicious){
+        updateStatus("safe");
     }
 }
 
