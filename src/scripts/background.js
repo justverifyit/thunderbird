@@ -62,7 +62,7 @@ async function onButtonClick(tabId, message) {
             updateStatus("no-attachments")
         else {
             for (let attachment of attachments) {
-                const result = await scanWithVirusTotal(message, attachment);
+                const result = await scanWithVirusTotal(message, attachment, apiKey);
                 results.push(result);
             }
             showResults(results);
@@ -70,9 +70,9 @@ async function onButtonClick(tabId, message) {
     }
 }
 
-async function scanWithVirusTotal(message, attachment) {
+async function scanWithVirusTotal(message, attachment, apiKey) {
     try {
-        const result = await performScanAndPolling(message, attachment);
+        const result = await performScanAndPolling(message, attachment, apiKey);
         return {
             filename: attachment.name,
             result,
@@ -85,8 +85,7 @@ async function scanWithVirusTotal(message, attachment) {
     }
 }
 
-async function performScanAndPolling(message, attachment) {
-    let { apiKey } = await browser.storage.local.get("apiKey");
+async function performScanAndPolling(message, attachment, apiKey) {
     const apiUrl = "https://www.virustotal.com/api/v3/files";
 
     // Download the attachment
