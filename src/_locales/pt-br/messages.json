@@ -91,6 +91,10 @@
     "message": "Nenhuma chave de API foi especificada, deve especificá -la nas preferências antes de usar",
     "description": "invalid key banner"
   },
+  "messageScript.banner.no-attachments": {
+    "message": "Não há anexos para verificar",
+    "description": "no attachments"
+  },
   "messageScript.banner.danger": {
     "message": "Um ou mais dos anexos parecem conter um vírus, prossiga com cautela!",
     "description": "danger banner"

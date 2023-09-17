@@ -51,20 +51,28 @@ messenger.messageDisplayAction.onClicked.addListener(async (tab) =>{
 
 async function onButtonClick(tabId, message) {
     const attachments = await browser.messages.listAttachments(message.id);
+    let { apiKey } = await browser.storage.local.get("apiKey");
 
     // Scan attachments with VirusTotal
-    let results = [];
-    for (let attachment of attachments) {
-        const result = await scanWithVirusTotal(message, attachment);
-        results.push(result);
+    if (apiKey === "")
+        updateStatus("invalid-key")
+    else {
+        let results = [];
+        if (attachments.length === 0) // There are no attachments
+            updateStatus("no-attachments")
+        else {
+            for (let attachment of attachments) {
+                const result = await scanWithVirusTotal(message, attachment, apiKey);
+                results.push(result);
+            }
+            showResults(results);
+        }
     }
-
-    showResults(results);
 }
 
-async function scanWithVirusTotal(message, attachment) {
+async function scanWithVirusTotal(message, attachment, apiKey) {
     try {
-        const result = await performScanAndPolling(message, attachment);
+        const result = await performScanAndPolling(message, attachment, apiKey);
         return {
             filename: attachment.name,
             result,
@@ -77,44 +85,39 @@ async function scanWithVirusTotal(message, attachment) {
     }
 }
 
-async function performScanAndPolling(message, attachment) {
-    let { apiKey } = await browser.storage.local.get("apiKey");
+async function performScanAndPolling(message, attachment, apiKey) {
     const apiUrl = "https://www.virustotal.com/api/v3/files";
 
-    if (apiKey === "")
-        updateStatus("invalid-key")
-    else {
-        // Download the attachment
-        let attachmentBlob = await messenger.messages.getAttachmentFile(message.id, attachment.partName);
-        let formData = new FormData();
-        formData.append("file", attachmentBlob);
+    // Download the attachment
+    let attachmentBlob = await messenger.messages.getAttachmentFile(message.id, attachment.partName);
+    let formData = new FormData();
+    formData.append("file", attachmentBlob);
 
-        // Update status
-        updateStatus("uploading")
+    // Update status
+    updateStatus("uploading")
 
-        // Upload the attachment to VirusTotal
-        response = await fetch(apiUrl, {
-            method: "POST",
-            headers: {
-                "x-apikey": apiKey,
-            },
-            body: formData,
-        });
+    // Upload the attachment to VirusTotal
+    response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+            "x-apikey": apiKey,
+        },
+        body: formData,
+    });
 
-        if (!response.ok) {
-            throw new Error(`Error uploading to VirusTotal: ${response.statusText}`);
-        }
-
-        // Get the analysis ID
-        let data = await response.json();
-        const analysisId = data.data.id;
-
-        // Update status
-        updateStatus("polling");
-
-        // Poll for the analysis result
-        return await pollVirusTotalResult(analysisId);
+    if (!response.ok) {
+        throw new Error(`Error uploading to VirusTotal: ${response.statusText}`);
     }
+
+    // Get the analysis ID
+    let data = await response.json();
+    const analysisId = data.data.id;
+
+    // Update status
+    updateStatus("polling");
+
+    // Poll for the analysis result
+    return await pollVirusTotalResult(analysisId);
 }
 
 async function pollVirusTotalResult(analysisId) {

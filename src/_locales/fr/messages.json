@@ -91,6 +91,10 @@
     "message": "Aucune clé d'API n'a été spécifiée, il faut le spécifier dans les préférences avant d'utiliser ce module",
     "description": "invalid key banner"
   },
+  "messageScript.banner.no-attachments": {
+    "message": "Il n'y a aucune pièce jointe à analyser",
+    "description": "no attachments"
+  },
   "messageScript.banner.danger": {
     "message": "Une ou plusieurs des pièces jointes semblent contenir un virus, procédez avec prudence!",
     "description": "danger banner"

@@ -91,6 +91,10 @@
     "message": "APIキーは指定されていません。使用する前に設定で指定する必要があります",
     "description": "invalid key banner"
   },
+  "messageScript.banner.no-attachments": {
+    "message": "スキャンする添付ファイルはありません",
+    "description": "no attachments"
+  },
   "messageScript.banner.danger": {
     "message": "1つ以上の添付ファイルにウイルスが含まれているように見えます。注意して進めてください！",
     "description": "danger banner"

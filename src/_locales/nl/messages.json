@@ -91,6 +91,10 @@
     "message": "Er is geen API-sleutel opgegeven, moet deze vóór gebruik in de voorkeuren specificeren",
     "description": "invalid key banner"
   },
+  "messageScript.banner.no-attachments": {
+    "message": "Er zijn geen bijlagen om te scannen",
+    "description": "no attachments"
+  },
   "messageScript.banner.danger": {
     "message": "Een of meer van de bijlagen lijken een virus te bevatten, wees voorzichtig!",
     "description": "danger banner"

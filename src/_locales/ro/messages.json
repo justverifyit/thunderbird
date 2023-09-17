@@ -91,6 +91,10 @@
     "message": "Nu a fost specificată nicio cheie API, trebuie să o specifice în preferințe înainte de a utiliza",
     "description": "invalid key banner"
   },
+  "messageScript.banner.no-attachments": {
+    "message": "Nu există atașamente de scanat",
+    "description": "no attachments"
+  },
   "messageScript.banner.danger": {
     "message": "Unul sau mai multe dintre atașamente par să conțină un virus, procedați cu prudență!",
     "description": "danger banner"

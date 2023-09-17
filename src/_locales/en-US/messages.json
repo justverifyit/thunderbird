@@ -91,6 +91,10 @@
     "message": "No API key has been specified, must specify it in the preferences before using",
     "description": "invalid key banner"
   },
+  "messageScript.banner.no-attachments": {
+    "message": "There are no attachments to scan",
+    "description": "no attachments"
+  },
   "messageScript.banner.danger": {
     "message": "One or more of the attachments appear to contain a virus, proceed with caution!",
     "description": "danger banner"

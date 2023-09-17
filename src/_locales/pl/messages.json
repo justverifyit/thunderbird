@@ -91,6 +91,10 @@
     "message": "Nie określono klucza API, nie należy go określić w preferencjach przed użyciem",
     "description": "invalid key banner"
   },
+  "messageScript.banner.no-attachments": {
+    "message": "Brak załączników do przeskanowania",
+    "description": "no attachments"
+  },
   "messageScript.banner.danger": {
     "message": "Wydaje się, że jeden lub więcej załączników zawiera wirusa, zachowuje ostrożność!",
     "description": "danger banner"
