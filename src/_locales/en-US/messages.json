@@ -79,6 +79,10 @@
     "message": "Uploading attachments...",
     "description": "uploading banner"
   },
+  "messageScript.banner.checking": {
+    "message": "Checking attachment hashes...",
+    "description": "check banner"
+  },
   "messageScript.banner.polling": {
     "message": "Polling for attachment results...",
     "description": "polling banner"

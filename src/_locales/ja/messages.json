@@ -79,6 +79,10 @@
     "message": "添付ファイルのアップロード...",
     "description": "uploading banner"
   },
+  "messageScript.banner.checking": {
+    "message": "添付ファイルのハッシュを確認しています...",
+    "description": "check banner"
+  },
   "messageScript.banner.polling": {
     "message": "添付ファイルの結果の投票...",
     "description": "polling banner"

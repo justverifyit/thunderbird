@@ -20,6 +20,10 @@ function addBanner(status){
             notification.className = "verifyit_banner banner loading-banner";
             notificationText.innerText = browser.i18n.getMessage("messageScript.banner.uploading");
             break;
+        case "checking":
+            notification.className = "verifyit_banner banner loading-banner";
+            notificationText.innerText = browser.i18n.getMessage("messageScript.banner.checking");
+            break;
         case "polling":
             notification.className = "verifyit_banner banner loading-banner";
             notificationText.innerText = browser.i18n.getMessage("messageScript.banner.polling");

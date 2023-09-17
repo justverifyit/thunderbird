@@ -79,6 +79,10 @@
     "message": "Téléchargement des pièces jointes...",
     "description": "uploading banner"
   },
+  "messageScript.banner.checking": {
+    "message": "Vérification des hachages des pièces jointes...",
+    "description": "check banner"
+  },
   "messageScript.banner.polling": {
     "message": "Interrogation des résultats des pièces jointes...",
     "description": "polling banner"

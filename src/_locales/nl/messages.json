@@ -79,6 +79,10 @@
     "message": "Bijlagen aan het uploaden...",
     "description": "uploading banner"
   },
+  "messageScript.banner.checking": {
+    "message": "Bijlage-hashes controleren...",
+    "description": "check banner"
+  },
   "messageScript.banner.polling": {
     "message": "Polling voor bijlageresultaten...",
     "description": "polling banner"
