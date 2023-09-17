@@ -213,7 +213,7 @@ async function showResults(results){
     let foundMalicious = false;
 
     results.forEach(function (result, _) {
-        if (result.result !== undefined) {
+        if (result !== undefined) {
             if (result.stats.malicious > 0 || result.stats.suspicious > 0){
                 foundMalicious = true;
                 updateStatus("danger");
